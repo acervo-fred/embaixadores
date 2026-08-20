@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Embaixadores — Bia Bogossian 55024</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="brand-eyebrow">
+      <svg class="bolt" viewBox="0 0 16 24"><polygon points="10,0 0,14 6,14 4,24 16,9 9,9"></polygon></svg>
+      Deputada Estadual
+    </div>
+    <div class="brand-title-wrap">
+      <h1 class="brand-name">Bia Bogossian</h1>
+      <div class="brand-tagline">O afeto é <strong>revolucionário</strong></div>
+    </div>
+    <div class="portal-titulo">Portal Embaixadores</div>
+  </header>
+
+  <main>
+
+    <!-- ============ LOGIN / CADASTRO ============ -->
+    <div id="boxAuth" class="card">
+      <h2 id="tituloAuth">Entrar</h2>
+
+      <div class="campo" id="campoNomeEmbaixador" style="display:none;">
+        <label for="nomeEmbaixador">Seu nome completo</label>
+        <input type="text" id="nomeEmbaixador" placeholder="Nome e sobrenome">
+      </div>
+
+      <div class="campo">
+        <label for="emailAuth">E-mail</label>
+        <input type="email" id="emailAuth" autocomplete="email" placeholder="seu@email.com">
+      </div>
+
+      <div class="campo">
+        <label for="senhaAuth">Senha</label>
+        <input type="password" id="senhaAuth" autocomplete="current-password" placeholder="Mínimo 6 caracteres">
+      </div>
+
+      <button id="btnAuth" class="btn-primary">Entrar</button>
+      <div class="status-envio" id="statusAuth"></div>
+
+      <div class="alterna-modo">
+        <span id="textoAlternaModo">Ainda não tem conta?</span>
+        <button type="button" class="btn-texto" id="btnAlternaModo">Criar conta</button>
+      </div>
+    </div>
+
+    <!-- ============ ÁREA LOGADA ============ -->
+    <div id="boxApp" style="display:none;">
+
+      <div class="topo-usuario">
+        <span class="ola" id="olaUsuario"></span>
+        <button id="btnLogout" class="btn-secundario">Sair</button>
+      </div>
+
+      <div class="contador-pessoas">
+        <span id="contadorNumero">0</span>
+        <span>pessoas convertidas por você</span>
+      </div>
+
+      <div class="card">
+        <h2 id="tituloFormPessoa">Adicionar pessoa</h2>
+
+        <div class="campo">
+          <label for="pessoaNome">Nome completo</label>
+          <input type="text" id="pessoaNome" placeholder="Nome e sobrenome">
+          <div class="mensagem-erro" id="erroPessoaNome"></div>
+        </div>
+
+        <div class="campo">
+          <label for="pessoaConfianca">Probabilidade real de votar: <span id="confiancaValor">3</span>/5</label>
+          <div class="confianca-slider">
+            <input type="range" id="pessoaConfianca" min="1" max="5" step="1" value="3">
+            <div class="confianca-marcas"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+            <div class="confianca-legenda"><span>Pouco provável</span><span>Muito provável</span></div>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="pessoaMunicipio">Município</label>
+          <input type="text" id="pessoaMunicipio" list="listaMunicipios" placeholder="Comece a digitar o município" autocomplete="off">
+          <datalist id="listaMunicipios"></datalist>
+          <div class="mensagem-erro" id="erroPessoaMunicipio"></div>
+        </div>
+
+        <button id="btnAdicionarPessoa" class="btn-primary">Adicionar</button>
+        <button id="btnCancelarEdicao" type="button" class="btn-secundario" style="display:none;">Cancelar edição</button>
+        <div class="status-envio" id="statusPessoa"></div>
+      </div>
+
+      <div class="card">
+        <h2>Minha lista</h2>
+        <div class="lista-pessoas" id="listaPessoas">
+          <p class="sem-dados">Nenhum nome cadastrado ainda.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">Bia Bogossian 55024 — Deputada Estadual</footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
