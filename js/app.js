@@ -123,6 +123,28 @@ function escaparHtml(valor) {
   return div.innerHTML;
 }
 
+// Traduz os erros mais comuns do Firebase Auth pra uma mensagem que
+// explica o que aconteceu de verdade, em vez de um "e-mail ou senha
+// errados" genérico que não ajuda a pessoa a se corrigir.
+function mensagemDeErroAuth(erro, estavaCriandoConta) {
+  switch (erro.code) {
+    case "auth/email-already-in-use":
+      return "Esse e-mail já tem conta (pode ter sido criada com login Google em outro lugar). Tente entrar em vez de criar conta, ou use outro e-mail.";
+    case "auth/invalid-email":
+      return "Esse e-mail não parece válido. Confira e tente de novo.";
+    case "auth/weak-password":
+      return "Senha muito fraca — use pelo menos 6 caracteres.";
+    case "auth/user-not-found":
+    case "auth/wrong-password":
+    case "auth/invalid-credential":
+      return estavaCriandoConta
+        ? "Não foi possível criar a conta. Tente novamente."
+        : "E-mail ou senha incorretos.";
+    default:
+      return "Não foi possível entrar. Tente novamente em instantes.";
+  }
+}
+
 function limparFormularioPessoa() {
   pessoaNomeInput.value = "";
   pessoaConfiancaInput.value = 3;
@@ -390,7 +412,7 @@ async function iniciarModoFirebase() {
       }
     } catch (erro) {
       console.error(erro);
-      statusAuth.textContent = "Não foi possível entrar. Confira e-mail e senha.";
+      statusAuth.textContent = mensagemDeErroAuth(erro, modoCadastro);
       statusAuth.className = "status-envio erro";
     }
     btnAuth.disabled = false;
